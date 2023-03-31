@@ -7,11 +7,9 @@ import openai_async
 
 bot = lightbulb.BotApp(token=config.bot_token)
 
-
 @bot.listen(lightbulb.LightbulbStartedEvent)
 async def bot_started(event):
     print('HampterGenerator is online.')
-
 
 
 @bot.command
