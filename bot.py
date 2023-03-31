@@ -1,13 +1,8 @@
-import aiohttp
-import aiofiles
 import hikari
 import lightbulb
-import openai
 import random
 import config
-from  PIL import Image
 import openai_async
-
 
 
 bot = lightbulb.BotApp(token=config.bot_token)
@@ -17,13 +12,6 @@ bot = lightbulb.BotApp(token=config.bot_token)
 async def bot_started(event):
     print('HampterGenerator is online.')
 
-
-@bot.command
-@lightbulb.command('ascii','ascii hampter')
-@lightbulb.implements(lightbulb.SlashCommand)
-async def ascii(ctx):
-    
-    await ctx.respond('pong!')
 
 
 @bot.command
@@ -65,13 +53,14 @@ async def generate_lober_image(ctx):
     await ctx.respond(attachment=image_url)
 
 
+
 def randomHampterInput():
     str_list = ["Hampter Meme", "Dank Hampter Meme", "Very Funny Hampter Meme", "Cursed Deep Fried Hampter Meme"]
     return str_list[random.randrange(0,len(str_list))]
     
 
 def randomLoberInput():
-    str_list = ["Lobster Meme", "Dank Lobster Meme", "Meme featuring Larry the Lobster from the show Spongebob", "Blue Lobster Meme", "Cursed Lobster Meme", "Renaissance Painting of a Lobster", "Portrait painting of a Lobster wearing clothes"]
+    str_list = ["Lobster Meme", "Dank Lobster Meme", "Meme featuring Larry the Lobster from the show Spongebob", "Blue Lobster Meme", "Cursed Lobster Meme", "Portrait painting of a Lobster wearing clothes"]
     return str_list[random.randrange(0,len(str_list))]
 
 bot.run()
