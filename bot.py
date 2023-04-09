@@ -76,7 +76,7 @@ def randomHampterInput():
     return str_list[random.randrange(0,len(str_list))]
 
 def randomAsoingbobInput():
-    str_list = ["Spongebob Meme", "Dank Spongebob Meme", "Gangsta Spongebob Meme", "Cursed Deep Fried Spongebob Meme", "Asoingbob and Patrick when they stole sandy hair"]
+    str_list = ["Four Panel Spongebob Meme", "Dank Mr. Krabz Meme", "Dark And Scary Squidward Meme", "Cursed Deep Fried Meme Featuring Characters From Spongebob", "Asoingbob and Patrick when they stole sandy hair", "Generate An Image From The TV Show Spongebob In Gross-Up Close-Up Style"]
     return str_list[random.randrange(0,len(str_list))]
     
 def randomLoberInput():
