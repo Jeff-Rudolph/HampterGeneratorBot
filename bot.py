@@ -17,18 +17,8 @@ async def bot_started(event):
 @lightbulb.implements(lightbulb.SlashCommand)
 async def generate_hampter_image(ctx):
  
-    response = await openai_async.generate_img(
-     config.openAI_key,
-     timeout=8,
-     payload={
-         "prompt": randomHampterInput(),
-         "n": 1,
-         "size": "512x512"
-        }
-    )
+    response = await respond(randomHampterInput())
     image_url = response.json()["data"][0]["url"]
-
-    
     await ctx.respond(attachment=image_url)
 
 
@@ -37,17 +27,8 @@ async def generate_hampter_image(ctx):
 @lightbulb.implements(lightbulb.SlashCommand)
 async def generate_asoingbob_image(ctx):
 
-    response = await openai_async.generate_img(
-        config.openAI_key,
-        timeout=8,
-        payload={
-         "prompt": randomAsoingbobInput(),
-         "n": 1,
-         "size": "512x512"
-        }
-    )
+    response = await respond(randomAsoingbobInput())
     image_url = response.json()["data"][0]["url"]
-
     await ctx.respond(attachment=image_url)
 
 
@@ -56,17 +37,8 @@ async def generate_asoingbob_image(ctx):
 @lightbulb.implements(lightbulb.SlashCommand)
 async def generate_lober_image(ctx):
 
-    response = await openai_async.generate_img(
-        config.openAI_key,
-        timeout=8,
-        payload={
-         "prompt": randomLoberInput(),
-         "n": 1,
-         "size": "512x512"
-        }
-    )
+    response = await respond(randomLoberInput())
     image_url = response.json()["data"][0]["url"]
-
     await ctx.respond(attachment=image_url)
 
 
@@ -76,11 +48,22 @@ def randomHampterInput():
     return str_list[random.randrange(0,len(str_list))]
 
 def randomAsoingbobInput():
-    str_list = ["Four Panel Spongebob Meme", "Dank Mr. Krabz Meme", "Dark And Scary Squidward Meme", "Cursed Deep Fried Meme Featuring Characters From Spongebob", "Generate An Image From The TV Show Spongebob In Gross-Up Close-Up Style"]
+    str_list = ["Spongebob Meme", "Dank Mr. Krabz Meme", "Dark And Scary Squidward Meme", "Cursed Deep Fried Meme Featuring Characters From Spongebob", "Generate An Image From The TV Show Spongebob In Gross-Up Close-Up Style"]
     return str_list[random.randrange(0,len(str_list))]
     
 def randomLoberInput():
     str_list = ["Lobster Meme", "Dank Lobster Meme", "Meme featuring Larry the Lobster from the show Spongebob", "Blue Lobster Meme", "Cursed Lobster Meme", "Portrait painting of a Lobster wearing clothes"]
     return str_list[random.randrange(0,len(str_list))]
+
+async def respond(input_str):
+    return await openai_async.generate_img(
+        config.openAI_key,
+        timeout=8,
+        payload={
+         "prompt": input_str,
+         "n": 1,
+         "size": "256x256"
+        }
+    )
 
 bot.run()
